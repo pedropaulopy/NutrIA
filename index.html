@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Registro de Alimentos</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="container">
+    <h1>Registro de Alimentos</h1>
+    <form id="alimento-form">
+        <label for="nome">Nome do alimento:</label>
+        <input type="text" id="nome" name="nome" required minlength="2" />
+
+        <label for="quantidade">Quantidade (ex: 100g, 1 colher):</label>
+        <input type="text" id="quantidade" name="quantidade" required />
+
+        <button type="submit">Enviar</button>
+    </form>
+    <p id="mensagem"></p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
