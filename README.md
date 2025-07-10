@@ -1,6 +1,6 @@
 
 
-<h1 align="center">🥗 Nutria Site</h1>
+<h1 align="center">🥗 NutrIA</h1>
 <h3 align="center">Registro de Alimentos com IA Nutricional</h3>
 
 <p align="center">
