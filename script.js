@@ -12,7 +12,7 @@ document.getElementById("alimento-form").addEventListener("submit", async (e) =>
     }
 
     try {
-        const resposta = await fetch("http://localhost:5678/webhook-test/alimento", {
+        const resposta = await fetch("http://localhost:5678/webhook/alimento", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nome, quantidade })
