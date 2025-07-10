@@ -4,7 +4,6 @@
 <h3 align="center">Registro de Alimentos com IA Nutricional</h3>
 
 <p align="center">
-  <img alt="Status" src="https://img.shields.io/badge/status-em%20desenvolvimento-blue?style=flat-square">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-green?style=flat-square">
 </p>
 
