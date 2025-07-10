@@ -20,7 +20,7 @@ document.getElementById("alimento-form").addEventListener("submit", async (e) =>
 
         if (resposta.ok) {
             mensagem.textContent = "Enviado com sucesso!";
-            mensagem.style.color = "green";
+            mensagem.style.color = "white";
             document.getElementById("alimento-form").reset();
         } else {
             throw new Error("Erro no envio");
