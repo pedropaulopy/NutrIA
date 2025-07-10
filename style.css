@@ -10,11 +10,11 @@ body {
 .container {
     max-width: 420px;
     margin: 60px auto;
-    background: rgba(24, 36, 32, 0.98);
+    background: rgba(64, 64, 64, 0.98);
     padding: 36px 32px 32px 32px;
     border-radius: 18px;
     box-shadow: 0 8px 32px rgba(20, 83, 45, 0.18);
-    border: 1px solid #2e7d32;
+    border: 1px solid rgba(46, 125, 50, 0);
     backdrop-filter: blur(2px);
     transition: box-shadow 0.3s;
 }
@@ -42,7 +42,7 @@ form {
 label {
     margin-top: 10px;
     font-weight: 600;
-    color: #67e8f9;
+    color: #e0f9ff;
     letter-spacing: 0.5px;
 }
 
