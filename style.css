@@ -1,34 +1,36 @@
 body {
     font-family: 'Montserrat', Arial, sans-serif;
-    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+    background: linear-gradient(135deg, #1a2a33 0%, #183d3d 60%, #14532d 100%);
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    color: #e6ffe6;
 }
 
 .container {
     max-width: 420px;
     margin: 60px auto;
-    background: rgba(255,255,255,0.95);
+    background: rgba(24, 36, 32, 0.98);
     padding: 36px 32px 32px 32px;
     border-radius: 18px;
-    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.18);
-    border: 1px solid #e3eafc;
+    box-shadow: 0 8px 32px rgba(20, 83, 45, 0.18);
+    border: 1px solid #2e7d32;
     backdrop-filter: blur(2px);
     transition: box-shadow 0.3s;
 }
 
 .container:hover {
-    box-shadow: 0 12px 40px rgba(31, 38, 135, 0.22);
+    box-shadow: 0 12px 40px rgba(20, 83, 45, 0.22);
 }
 
 h1 {
     text-align: center;
-    color: #2a5298;
+    color: #4ade80;
     font-family: 'Montserrat', Arial, sans-serif;
     font-size: 2.1rem;
     margin-bottom: 18px;
     letter-spacing: 1px;
+    text-shadow: 0 2px 8px #14532d55;
 }
 
 form {
@@ -40,46 +42,49 @@ form {
 label {
     margin-top: 10px;
     font-weight: 600;
-    color: #2a5298;
+    color: #67e8f9;
     letter-spacing: 0.5px;
 }
 
 input {
     padding: 12px;
     margin-top: 5px;
-    border: 1.5px solid #b6c6e0;
+    border: 1.5px solid #4ade80;
     border-radius: 8px;
     font-size: 1rem;
-    background: #f7fafd;
-    transition: border 0.2s, box-shadow 0.2s;
+    background: #183d3d;
+    color: #e6ffe6;
+    transition: border 0.2s, box-shadow 0.2s, background 0.2s;
     outline: none;
 }
 
 input:focus {
-    border: 1.5px solid #2a5298;
-    box-shadow: 0 0 0 2px #b6c6e055;
+    border: 1.5px solid #67e8f9;
+    box-shadow: 0 0 0 2px #4ade8055;
+    background: #14532d;
 }
 
 button {
     margin-top: 22px;
     padding: 13px;
-    background: linear-gradient(90deg, #2a5298 0%, #1e3c72 100%);
-    color: white;
+    background: linear-gradient(90deg, #4ade80 0%, #67e8f9 100%);
+    color: #183d3d;
     border: none;
     border-radius: 8px;
     font-size: 1.08rem;
     font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(42, 82, 152, 0.10);
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(76, 222, 128, 0.10);
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s, color 0.2s;
     letter-spacing: 0.5px;
     outline: none;
 }
 
 button:hover, button:focus {
-    background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+    background: linear-gradient(90deg, #67e8f9 0%, #4ade80 100%);
+    color: #14532d;
     transform: translateY(-2px) scale(1.03);
-    box-shadow: 0 4px 16px rgba(42, 82, 152, 0.13);
+    box-shadow: 0 4px 16px rgba(103, 232, 249, 0.13);
 }
 
 #mensagem {
@@ -89,6 +94,7 @@ button:hover, button:focus {
     font-size: 1.08rem;
     min-height: 24px;
     transition: color 0.2s;
+    color: #bbf7d0;
 }
 
 @media (max-width: 500px) {
