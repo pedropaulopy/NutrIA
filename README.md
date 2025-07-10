@@ -19,6 +19,10 @@
 ## Visão Geral do Fluxo
 ![image](https://github.com/user-attachments/assets/92626797-bda7-4e98-80db-ab9f759b9da2)
 
+## Site para input dos alimentos
+![image](https://github.com/user-attachments/assets/59aa113f-5636-4d31-bb77-573d6beda540)
+
+
 ## Email enviado
 ![image](https://github.com/user-attachments/assets/e1c9cc4d-6f53-47ca-af54-858a62fd3953)
 
