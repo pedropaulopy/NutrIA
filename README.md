@@ -8,6 +8,14 @@
   <img alt="License" src="https://img.shields.io/badge/license-MIT-green?style=flat-square">
 </p>
 
+
+## 📥 Como importar este fluxo no n8n
+
+1. Acesse seu painel do n8n
+2. Clique em “+” → **Import workflow**
+3. Selecione o arquivo `fluxo-nutricional-n8n.json` baixado deste repositório
+4. Configure as credenciais do Google Sheets, OpenAI e Email
+
 ---
 
 ## ✨ Sobre o Projeto
