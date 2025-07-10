@@ -16,6 +16,12 @@
 3. Selecione o arquivo `fluxo-nutricional-n8n.json` baixado deste repositório
 4. Configure as credenciais do Google Sheets, OpenAI e Email
 
+## Visão Geral do Fluxo
+![image](https://github.com/user-attachments/assets/92626797-bda7-4e98-80db-ab9f759b9da2)
+
+## Email enviado
+![image](https://github.com/user-attachments/assets/e1c9cc4d-6f53-47ca-af54-858a62fd3953)
+
 ---
 
 ## ✨ Sobre o Projeto
