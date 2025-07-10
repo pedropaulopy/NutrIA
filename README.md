@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="https://img.icons8.com/color/96/healthy-eating.png" width="80" alt="Nutria Logo"/>
-</p>
+
 
 <h1 align="center">🥗 Nutria Site</h1>
 <h3 align="center">Registro de Alimentos com IA Nutricional</h3>
