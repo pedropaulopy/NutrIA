@@ -1,59 +1,105 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f4f8;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
     margin: 0;
     padding: 0;
+    min-height: 100vh;
 }
 
 .container {
-    max-width: 400px;
+    max-width: 420px;
     margin: 60px auto;
-    background-color: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background: rgba(255,255,255,0.95);
+    padding: 36px 32px 32px 32px;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.18);
+    border: 1px solid #e3eafc;
+    backdrop-filter: blur(2px);
+    transition: box-shadow 0.3s;
+}
+
+.container:hover {
+    box-shadow: 0 12px 40px rgba(31, 38, 135, 0.22);
 }
 
 h1 {
     text-align: center;
-    color: #333;
+    color: #2a5298;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 2.1rem;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
 }
 
 form {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
 label {
-    margin-top: 15px;
-    font-weight: bold;
+    margin-top: 10px;
+    font-weight: 600;
+    color: #2a5298;
+    letter-spacing: 0.5px;
 }
 
 input {
-    padding: 10px;
+    padding: 12px;
     margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    border: 1.5px solid #b6c6e0;
+    border-radius: 8px;
     font-size: 1rem;
+    background: #f7fafd;
+    transition: border 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+
+input:focus {
+    border: 1.5px solid #2a5298;
+    box-shadow: 0 0 0 2px #b6c6e055;
 }
 
 button {
-    margin-top: 20px;
-    padding: 12px;
-    background-color: #0077cc;
+    margin-top: 22px;
+    padding: 13px;
+    background: linear-gradient(90deg, #2a5298 0%, #1e3c72 100%);
     color: white;
     border: none;
-    border-radius: 6px;
-    font-size: 1rem;
+    border-radius: 8px;
+    font-size: 1.08rem;
+    font-weight: 700;
     cursor: pointer;
+    box-shadow: 0 2px 8px rgba(42, 82, 152, 0.10);
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    letter-spacing: 0.5px;
+    outline: none;
 }
 
-button:hover {
-    background-color: #005fa3;
+button:hover, button:focus {
+    background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 4px 16px rgba(42, 82, 152, 0.13);
 }
 
 #mensagem {
-    margin-top: 20px;
+    margin-top: 22px;
     text-align: center;
     font-weight: bold;
+    font-size: 1.08rem;
+    min-height: 24px;
+    transition: color 0.2s;
+}
+
+@media (max-width: 500px) {
+    .container {
+        padding: 18px 6vw 18px 6vw;
+        max-width: 98vw;
+    }
+    h1 {
+        font-size: 1.3rem;
+    }
+    button {
+        font-size: 1rem;
+    }
 }
