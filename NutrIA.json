@@ -1,0 +1,664 @@
+{
+  "name": "NutrIA",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "/alimento",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -20,
+        -420
+      ],
+      "id": "65b3d23c-fb07-44f2-b290-5d76a24c37f3",
+      "name": "Recebe os Dados do Alimento",
+      "webhookId": "aba0bbc7-2633-425e-b396-a73427ea52c7"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ $json.message.content }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        560,
+        -420
+      ],
+      "id": "0a1d850c-5073-4a3e-96c1-8be9529703d3",
+      "name": "Extrair JSON da IA"
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1220,
+        -420
+      ],
+      "id": "245310b3-8169-4b25-81ae-7e63c6dc2142",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "02904168-b89f-464d-ae74-ecd4ade79a77",
+              "name": "mensagem",
+              "value": "Macros calculados com sucesso!",
+              "type": "string"
+            },
+            {
+              "id": "dbf5dc7d-59cb-4b3f-a92e-ab31fe812422",
+              "name": "Alimento",
+              "value": "={{ $json.Alimento }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1000,
+        -420
+      ],
+      "id": "515d3150-7e3e-44ab-9ee8-a7f87f4e06eb",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        640,
+        -60
+      ],
+      "id": "1a85372f-6b19-4ff1-9ca4-cf502dd4d632",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 23,
+              "triggerAtMinute": 50
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -20,
+        -60
+      ],
+      "id": "3f2ac0b2-2f29-4b00-8ba1-396f326fe83d",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "content": "# 🧠 Assistente Nutricional Automatizado\n\nEste fluxo tem como objetivo gerar uma **análise nutricional personalizada** com base nos alimentos consumidos no dia, utilizando **Google Sheets**, **OpenAI GPT-4** e envio por **e-mail formatado em HTML**.\n\n---\n\n## ⚙️ Estrutura do Workflow\n\n1. 🔁 **Webhook (Entrada de Dados)**\n   - Recebe os dados de alimento enviados por formulário ou sistema externo.\n   - Formato esperado: Alimento, Quantidade, Calorias, Proteínas, Carboidratos, Gorduras, Data.\n\n2. 📄 **Append ou Update na Planilha**\n   - Os dados são inseridos na aba de alimentos no Google Sheets, evitando duplicidade.\n\n3. 📊 **Leitura das Abas do Google Sheets**\n   - `Get rows in sheet`: lê os alimentos consumidos no dia.\n   - `Get rows in sheet1`: lê os dados da aba de metas (calorias e macronutrientes).\n\n4. 🧩 **Código JS (Processamento dos Dados)**\n   - Dois nodes `Code` transformam os dados de cada aba em um JSON estruturado.\n   - Os dados são formatados para prompt de IA.\n\n5. 🧠 **ChatGPT (OpenAI)**\n   - Gera um resumo da alimentação do dia, com:\n     - Avaliação da ingestão total\n     - Pontos positivos e excessos\n     - Sugestão de melhoria para o próximo dia\n     - Mensagem motivacional\n\n6. 📧 **Envio do E-mail**\n   - E-mail formatado em HTML com os dados gerados pela IA e gráficos de progresso.\n   - Estilização personalizada, com ícones e parágrafos separados.\n\n---\n\n## 📝 Observações Importantes\n\n- O webhook está ativado e escuta continuamente (não é necessário executar manualmente).\n- As planilhas devem conter colunas com os nomes exatos esperados.\n- O node `Message Model` utiliza **modo JSON completo**, com `system` e `user` para guiar a IA com mais precisão.\n- O HTML do e-mail usa CSS inline e `white-space: pre-wrap` para preservar a estrutura.\n\n---\n\n## ✅ Sugestão de Melhorias Futuras\n\n- 📈 Integrar com gráficos ou dashboards (ex: Telegram, Notion, PowerBI)\n- 🥦 Consultar base de dados nutricional para preencher macros automaticamente\n\n---\n\n📌 *Última atualização:* 09 de Julho de 2025  \n👨‍💻 *Autor:* Pedro Paulo Sousa de Carlo\n",
+        "height": 1380,
+        "width": 880,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -960,
+        -440
+      ],
+      "typeVersion": 1,
+      "id": "75b18891-1ea0-4621-9c9f-3732077f36f1",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "chatgpt-4o-latest",
+          "mode": "list",
+          "cachedResultName": "CHATGPT-4O-LATEST"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "Você é um nutricionista. Dado o nome de um alimento e sua quantidade, devolva os macronutrientes (proteínas, gorduras, carboidratos) e calorias em JSON. Apenas o JSON, sem explicações.\n",
+              "role": "system"
+            },
+            {
+              "content": "=Calcule os macros para {{ $json.body.nome }}, quantidade {{ $json.body.quantidade }}{{ $json.body.unidade }}.\n"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        200,
+        -420
+      ],
+      "id": "6630e982-af62-4b2d-8da9-9f93635f8e35",
+      "name": "Usa o modelo GPT para calcular macros",
+      "credentials": {
+        "openAiApi": {
+          "id": "WFqdeQGFy192N32A",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1ORRO3hxWH54ch4lE0PbMiXz2Z1tCKzOTJfv6SWaNL80",
+          "mode": "list",
+          "cachedResultName": "NUTRIA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ORRO3hxWH54ch4lE0PbMiXz2Z1tCKzOTJfv6SWaNL80/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ORRO3hxWH54ch4lE0PbMiXz2Z1tCKzOTJfv6SWaNL80/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Alimento": "={{ $json.alimento }}",
+            "Quantidade": "={{ $json.quantidade }}",
+            "Calorias": "={{ $json.calorias }}",
+            "Gorduras": "={{ $json.gorduras }}",
+            "Carboidratos": "={{ $json.carboidratos }}",
+            "Data": "={{ new Date().toISOString().slice(0,10) }}\n",
+            "Proteinas": "={{ $json.proteinas }}"
+          },
+          "matchingColumns": [
+            "Alimento"
+          ],
+          "schema": [
+            {
+              "id": "Alimento",
+              "displayName": "Alimento",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Quantidade",
+              "displayName": "Quantidade",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Proteinas",
+              "displayName": "Proteinas",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Gorduras",
+              "displayName": "Gorduras",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Carboidratos",
+              "displayName": "Carboidratos",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Calorias",
+              "displayName": "Calorias",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Data",
+              "displayName": "Data",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        780,
+        -420
+      ],
+      "id": "e2ab662f-aaf6-4883-a40c-6ceaa5669cea",
+      "name": "Coloca os dados no Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Nyn8PDOUp7ENeqLs",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1ORRO3hxWH54ch4lE0PbMiXz2Z1tCKzOTJfv6SWaNL80",
+          "mode": "list",
+          "cachedResultName": "NUTRIA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ORRO3hxWH54ch4lE0PbMiXz2Z1tCKzOTJfv6SWaNL80/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ORRO3hxWH54ch4lE0PbMiXz2Z1tCKzOTJfv6SWaNL80/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        200,
+        -160
+      ],
+      "id": "5af56c30-f235-4822-9954-210abf7770ac",
+      "name": "Pega os alimentos logados no dia",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Nyn8PDOUp7ENeqLs",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1ORRO3hxWH54ch4lE0PbMiXz2Z1tCKzOTJfv6SWaNL80",
+          "mode": "list",
+          "cachedResultName": "NUTRIA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ORRO3hxWH54ch4lE0PbMiXz2Z1tCKzOTJfv6SWaNL80/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 995265020,
+          "mode": "list",
+          "cachedResultName": "Resumo Diario",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ORRO3hxWH54ch4lE0PbMiXz2Z1tCKzOTJfv6SWaNL80/edit#gid=995265020"
+        },
+        "combineFilters": "OR",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        200,
+        40
+      ],
+      "id": "aabb924b-4985-4abd-8b04-936518f2725c",
+      "name": "Pega os macros do dia",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Nyn8PDOUp7ENeqLs",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{\n  json: {\n    resumoalimentos: $items().map(item => {\n      const i = item.json;\n\n      const alimento = i[\"Alimento\"] || \"desconhecido\";\n      const quantidade = i[\"Quantidade\"] || \"-\";\n      const calorias = i[\"Calorias\"] ?? 0;\n      const proteinas = i[\"Proteinas\"] ?? 0;\n      const carboidratos = i[\"Carboidratos\"] ?? 0;\n      const gorduras = i[\"Gorduras\"] ?? 0;\n\n      return `• ${alimento} (${quantidade}): ${calorias} kcal, ${proteinas}g proteínas, ${carboidratos}g carboidratos, ${gorduras}g gorduras`;\n    }).join('\\n')\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        420,
+        -160
+      ],
+      "id": "e40738e9-a9d1-4e6e-afa5-784f153c6c67",
+      "name": "Guarda os dados em um JSON"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{\n  json: {\n    resumo: $items().map(item => {\n      const i = item.json;\n\n      const nutriente = i[\"Nutriente\"] || \"Nutriente\";\n      const consumido = i[\"Consumido Hoje (cal, g)\"] || 0;\n      const meta = i[\"Meta (cal, g)\"] || 0;\n      const progresso = i[\"Progresso (%)\"] || 0;\n\n      return `• ${nutriente}: ${consumido}/${meta} (${progresso}%)`;\n    }).join('\\n')\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        420,
+        40
+      ],
+      "id": "d8f39ba1-e1fe-4b6b-ab35-f25bce0bea3c",
+      "name": "Guarda os dados em um JSON1"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "chatgpt-4o-latest",
+          "mode": "list",
+          "cachedResultName": "CHATGPT-4O-LATEST"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=\n\n    Você é um especialista em nutrição que analisa a dieta diária de um usuário com base em um resumo dos alimentos consumidos.\n    Sua função é:\n\n        Avaliar a qualidade geral da alimentação com base em calorias, proteínas, carboidratos e gorduras.\n\n        Identificar excessos ou deficiências em algum dos macronutrientes.\n\n        Sugerir uma melhoria ou ajuste prático para o dia seguinte.\n\n        Finalizar com uma mensagem motivadora, leve e positiva.\n       \"Responda sempre no formato HTML válido, usando tags como <strong>, <p>, <ul>, etc., para estruturar o conteúdo, Nao crie um html do zero(DOCTYPE etc), basta apenas usar as tags corretas. Evite Markdown.\"",
+              "role": "system"
+            },
+            {
+              "content": "={{ $json.resumoalimentos }}{{ $json.resumo }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        860,
+        -60
+      ],
+      "id": "e8d8a12c-f68b-43ae-99a6-a779c5b22ec8",
+      "name": "Analisa os dados, oferece melhorias e manda uma mensagem positiva",
+      "credentials": {
+        "openAiApi": {
+          "id": "WFqdeQGFy192N32A",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "pedropaulodecarlo@gmail.com",
+        "subject": "Análise Nutricional Diária",
+        "message": "=<!DOCTYPE html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <style>\n    body {\n      font-family: Arial, sans-serif;\n      background-color: #f9f9f9;\n      padding: 20px;\n      color: #333;\n    }\n    .container {\n      background-color: #fff;\n      border-radius: 10px;\n      padding: 30px;\n      box-shadow: 0 2px 8px rgba(0,0,0,0.1);\n      max-width: 600px;\n      margin: 0 auto;\n    }\n    .title {\n      font-size: 20px;\n      font-weight: bold;\n      margin-bottom: 15px;\n      color: #2d6cdf;\n    }\n    .message {\n      line-height: 1.6;\n      font-size: 16px;\n    }\n    ul {\n      margin: 10px 0 20px 20px;\n      padding-left: 20px;\n    }\n    p {\n      margin-bottom: 15px;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"title\">Resumo da sua alimentação de hoje</div>\n    <div class=\"message\">\n      {{ $json.message.content }}\n    </div>\n  </div>\n</body>\n</html>\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1220,
+        -60
+      ],
+      "id": "555d4103-09f7-4bb4-b5e5-ada2ec46d0b9",
+      "name": "Envia a mensagem para o email configurado",
+      "webhookId": "6eaf6d19-e1a8-4913-95b3-302b4727da5c",
+      "executeOnce": true,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "utNZxrBdDbEBoFrS",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "clear",
+        "documentId": {
+          "__rl": true,
+          "value": "1ORRO3hxWH54ch4lE0PbMiXz2Z1tCKzOTJfv6SWaNL80",
+          "mode": "list",
+          "cachedResultName": "NUTRIA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ORRO3hxWH54ch4lE0PbMiXz2Z1tCKzOTJfv6SWaNL80/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ORRO3hxWH54ch4lE0PbMiXz2Z1tCKzOTJfv6SWaNL80/edit#gid=0"
+        },
+        "clear": "specificRows",
+        "startIndex": 2,
+        "rowsToDelete": 9999
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        200,
+        300
+      ],
+      "id": "15cd917c-0174-4c27-bd94-7f578ad26bdd",
+      "name": "Clear sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Nyn8PDOUp7ENeqLs",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -20,
+        300
+      ],
+      "id": "aeacc58b-8bb1-4acd-ae7f-174929095942",
+      "name": "Schedule Trigger1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Recebe os Dados do Alimento": {
+      "main": [
+        [
+          {
+            "node": "Usa o modelo GPT para calcular macros",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extrair JSON da IA": {
+      "main": [
+        [
+          {
+            "node": "Coloca os dados no Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        []
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Analisa os dados, oferece melhorias e manda uma mensagem positiva",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Pega os alimentos logados no dia",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Pega os macros do dia",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Usa o modelo GPT para calcular macros": {
+      "main": [
+        [
+          {
+            "node": "Extrair JSON da IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Coloca os dados no Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pega os alimentos logados no dia": {
+      "main": [
+        [
+          {
+            "node": "Guarda os dados em um JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pega os macros do dia": {
+      "main": [
+        [
+          {
+            "node": "Guarda os dados em um JSON1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Guarda os dados em um JSON": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Guarda os dados em um JSON1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Analisa os dados, oferece melhorias e manda uma mensagem positiva": {
+      "main": [
+        [
+          {
+            "node": "Envia a mensagem para o email configurado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Clear sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/Sao_Paulo",
+    "callerPolicy": "workflowsFromSameOwner",
+    "executionTimeout": -1
+  },
+  "versionId": "06e22d75-d79d-4af9-ac44-88855d976047",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "35cf27bdbd59d0addae7e7bfcf8efcd084b2785c6265a48aa491ce46f0670b95"
+  },
+  "id": "87kaTZEUmKH9yOmI",
+  "tags": []
+}
